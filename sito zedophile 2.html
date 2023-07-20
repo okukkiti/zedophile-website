@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Team Zedophile Now!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Style for the title */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(2px); /* Apply a slight blur */
+            z-index: 1; /* Ensure text is on top of circles */
+        }
+
+        /* Style for the buttons */
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 10px;
+            backdrop-filter: blur(2px); /* Apply a slight blur */
+            z-index: 1; /* Ensure buttons are on top of circles */
+        }
+
+        /* Enlarge the button on hover */
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Style for the circles */
+        .circle {
+            position: absolute;
+            background-color: red;
+            border-radius: 50%;
+            backdrop-filter: blur(2px); /* Apply a slight blur */
+            pointer-events: none; /* Prevent circles from capturing mouse events */
+        }
+
+        /* Small circle style */
+        .small {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Medium circle style */
+        .medium {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Title -->
+    <h1>Join Team Mama Now!</h1>
+
+    <!-- Button 1 -->
+    <a class="button" href="https://discord.gg/MyBJ3EWz" target="_blank">Join Discord Zedophile</a>
+
+    <!-- Button 2 -->
+    <a class="button" href="https://web.roblox.com/groups/32583734/Zedophile#!/about" target="_blank">Join Zedophile Roblox Group</a>
+
+    <script>
+        // Function to generate random position for the circles
+        function randomPosition() {
+            return Math.random() * (window.innerWidth - 40) + 'px';
+        }
+
+        // Function to generate random velocity for the circles
+        function randomVelocity() {
+            return (Math.random() - 0.5) * 4; // Adjust the value for the velocity range
+        }
+
+        // Function to apply random movement to the circles
+        function randomMovement(circle) {
+            const duration = 5000 + Math.random() * 5000; // Adjust the value for the duration range
+
+            let velocityX = randomVelocity();
+            let velocityY = randomVelocity();
+
+            const startTime = Date.now();
+
+            function moveCircle() {
+                const currentTime = Date.now() - startTime;
+                if (currentTime >= duration) {
+                    velocityX = randomVelocity(); // Get a new random velocity
+                    velocityY = randomVelocity(); // Get a new random velocity
+                    startTime = Date.now(); // Reset the start time
+                }
+
+                const nextX = parseInt(circle.style.left) + velocityX;
+                const nextY = parseInt(circle.style.top) + velocityY;
+
+                // Keep circles within the visible area
+                if (nextX < 0 || nextX + circle.offsetWidth > window.innerWidth) {
+                    velocityX *= -1;
+                }
+
+                if (nextY < 0 || nextY + circle.offsetHeight > window.innerHeight) {
+                    velocityY *= -1;
+                }
+
+                circle.style.left = nextX + 'px';
+                circle.style.top = nextY + 'px';
+
+                requestAnimationFrame(moveCircle);
+            }
+
+            moveCircle();
+        }
+
+        // Create small and medium circles and apply random movement to them
+        const circlesContainer = document.body;
+        for (let i = 0; i < 5; i++) { // Reduce the number of circles for better performance
+            const smallCircle = document.createElement('div');
+            smallCircle.className = 'circle small';
+            smallCircle.style.left = randomPosition();
+            smallCircle.style.top = randomPosition();
+            circlesContainer.appendChild(smallCircle);
+            randomMovement(smallCircle);
+
+            const mediumCircle = document.createElement('div');
+            mediumCircle.className = 'circle medium';
+            mediumCircle.style.left = randomPosition();
+            mediumCircle.style.top = randomPosition();
+            circlesContainer.appendChild(mediumCircle);
+            randomMovement(mediumCircle);
+        }
+    </script>
+</body>
+</html>
